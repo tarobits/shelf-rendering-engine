@@ -67,7 +67,7 @@ export class RenderableShelfSection {
     }
 
     itemFits(item: RenderableShelfItem) {
-        return this.getSpaceLeft() > item.width;
+        return this.getSpaceLeft() >= item.width;
     }
 
     private getSpaceLeft(): number {
@@ -112,7 +112,7 @@ export class RenderableShelfRow {
     }
 
     sectionFits(section: RenderableShelfSection): boolean {
-        return this.getSpaceLeft() > section.width;
+        return this.getSpaceLeft() >= section.width;
     }
 
     private getSpaceLeft(): number {
@@ -210,7 +210,7 @@ export class RenderableShelf {
     }
 
     shelfRowFits(row: RenderableShelfRow): boolean {
-        return this.getSpaceLeft() > row.height;
+        return this.getSpaceLeft() >= row.height;
     }
 
     private getSpaceLeft(): number {

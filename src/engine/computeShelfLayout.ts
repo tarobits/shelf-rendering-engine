@@ -19,11 +19,11 @@ function computeRows(sections: ShelfSection[], shelf: RenderableShelf): Renderab
 
     for (const i of sections.keys()) {
         let section = sections[i];
-        if (!section.y) {
+        if (section.y == null) {
             unsortedY.push(section);
             continue;
         }
-        if (!section.x) {
+        if (section.x == null) {
             unsortedX.push(section);
             continue;
         }
@@ -33,12 +33,14 @@ function computeRows(sections: ShelfSection[], shelf: RenderableShelf): Renderab
     }
     for (const i of unsortedX.keys()) {
         let section = unsortedX[i];
-        if (!section.y) throw new Error('Something went wrong while sorting sections.');
+        if (section.y == null) throw new Error('Something went wrong while sorting sections.');
+        if (rows[section.y] === undefined) rows[section.y] = new RenderableShelfRow(shelf.innerWidth);
         rows[section.y].addSection(computeSection(createSection(section,shelf), section.items));
     }
     for (const i of unsortedY.keys()) {
         let raw = unsortedY[i];
         let section = createSection(unsortedY[i],shelf);
+        if (rows.length === 0) rows[0] = new RenderableShelfRow(shelf.innerWidth);
         for (const j of rows.keys()) {
             let row = rows[j];
             if (!row.sectionFits(section)) continue;
@@ -83,7 +85,7 @@ function computeSection(section: RenderableShelfSection, items: ShelfItem[]): Re
 
     for (const i of items.keys()) {
         let item = items[i];
-        if (!item.positionInRow) {
+        if (item.positionInRow == null) {
             unsorted.push(item);
             continue;
         }

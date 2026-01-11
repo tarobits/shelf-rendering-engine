@@ -6,7 +6,7 @@
         </div>
         <div class="shelf" ref="el" :style="shelfStyle.outer">
             <div class="shelf-inner" :style="shelfStyle.inner">
-
+                <ShelfRow v-for="r,i in props.shelf.model" :key="i" :row="r" :scale="scale" />
             </div>
         </div>
     </div>
@@ -17,6 +17,7 @@ import { getScale } from '../composables';
 import { useShelfTheme } from '../composables/useShelfTheme';
 import { RenderableShelf } from '../types/engine';
 import { onMounted, onUnmounted, ref, toRef } from 'vue';
+import ShelfRow from './ShelfRow.vue';
 
 const el = ref<HTMLElement | null>(null);
 
@@ -33,6 +34,7 @@ const scale = getScale(props.shelf, size);
 const shelfStyle = useShelfTheme(props.shelf, scale);
 
 onMounted(() => {
+    console.log(props.shelf);
     if (!el.value) return;
 
     observer = new ResizeObserver(([entry]) => {
@@ -81,5 +83,7 @@ onUnmounted(() => {
 }
 .shelf-inner {
     position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
 }
 </style>
