@@ -1,5 +1,5 @@
 import { Scale } from "../types";
-import { RenderableShelf, ViewableShelf } from "../types/engine";
+import { ViewableShelf } from "../types/engine";
 import { computed, Ref } from "vue";
 
 export function getScale(shelf: Ref<ViewableShelf>, html: Ref<{h: number, w:number}>) {

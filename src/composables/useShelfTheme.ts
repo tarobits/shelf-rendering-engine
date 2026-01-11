@@ -1,6 +1,5 @@
 import { computeShelfSizing } from "../engine/computeShelfSizing";
-import { Scale } from "../types";
-import { RenderableShelf, RenderableShelfItem, RenderableShelfRow, RenderableShelfSection, ViewableShelf, ViewableShelfItem, ViewableShelfRow, ViewableShelfSection } from "../types/engine";
+import { ViewableShelf, ViewableShelfItem, ViewableShelfRow, ViewableShelfSection } from "../types/engine";
 import { computed, ComputedRef, Ref } from "vue";
 
 export function useShelfTheme(shelf: Ref<ViewableShelf>, scale: ComputedRef<{h: number, w: number}>) {

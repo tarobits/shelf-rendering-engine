@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef, toRef } from 'vue';
-import { RenderableShelfRow, ViewableShelfRow } from '../types/engine';
+import { computed, toRef } from 'vue';
+import { ViewableShelfRow } from '../types/engine';
 import ShelfSection from './ShelfSection.vue';
 import { useRowTheme } from '../composables/useShelfTheme';
 

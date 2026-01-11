@@ -9,9 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef, toRef } from 'vue';
+import { computed, toRef } from 'vue';
 import { useSectionTheme } from '../composables/useShelfTheme';
-import { RenderableShelfSection, ViewableShelfSection } from '../types/engine';
+import { ViewableShelfSection } from '../types/engine';
 import ShelfObject from './ShelfObject.vue';
 
 const props = defineProps<{
