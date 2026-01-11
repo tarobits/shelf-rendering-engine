@@ -72,10 +72,12 @@ onUnmounted(() => {
 .shelf-title {
     font-size: 1.5rem;
     font-weight: 600;
+    text-align: center;
 }
 .shelf-subtitle {
     font-size: 1.2rem;
     font-weight: 400;
+    text-align: center;
 }
 .shelf {
     position: relative;
