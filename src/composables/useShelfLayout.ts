@@ -1,11 +1,11 @@
 import { Scale } from "../types";
-import { RenderableShelf } from "../types/engine";
+import { RenderableShelf, ViewableShelf } from "../types/engine";
 import { computed, Ref } from "vue";
 
-export function getScale(shelf: RenderableShelf, html: Ref<{h: number, w:number}>) {
+export function getScale(shelf: Ref<ViewableShelf>, html: Ref<{h: number, w:number}>) {
     let relational: Scale = {
-        h: shelf.innerHeight+shelf.topWidth+shelf.bottomWidth,
-        w: shelf.innerWidth+shelf.leftWidth+shelf.rightWidth
+        h: shelf.value.innerHeight+shelf.value.topWidth+shelf.value.bottomWidth,
+        w: shelf.value.innerWidth+shelf.value.leftWidth+shelf.value.rightWidth
     }
     return computed(() => ({
         w: html.value.w/relational.w,

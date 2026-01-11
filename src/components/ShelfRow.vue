@@ -6,21 +6,23 @@
 
 <script setup lang="ts">
 import { computed, ComputedRef, toRef } from 'vue';
-import { RenderableShelfRow } from '../types/engine';
+import { RenderableShelfRow, ViewableShelfRow } from '../types/engine';
 import ShelfSection from './ShelfSection.vue';
 import { useRowTheme } from '../composables/useShelfTheme';
 
 const props = defineProps<{
-    row: RenderableShelfRow,
+    row: ViewableShelfRow,
     scale: { h: number; w: number }
 }>();
+
+const rowRef = toRef(props, 'row');
 
 const scale = computed(() => ({
     h: props.scale.h,
     w: props.scale.w
 }))
 
-const rowStyle = useRowTheme(props.row, scale);
+const rowStyle = useRowTheme(rowRef, scale);
 </script>
 
 <style scoped>

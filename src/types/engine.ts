@@ -3,6 +3,13 @@ import { EntityLocation, IdentificationCode } from "./misc"
 import { ShelfType, ShelfSizes } from "./shelf"
 import { FrontShelfView, SideShelfView } from "./shelfView"
 
+type PropertiesOnly<T> = {
+    [K in keyof T as T[K] extends Function ? never : K]: T[K]
+}
+type Mutable<T> = {
+  -readonly [K in keyof T]: T[K]
+}
+
 export type RenderableShelfItem = {
     width: number;
     height: number;
@@ -16,6 +23,8 @@ export type RenderableShelfItem = {
     identification_code?: IdentificationCode[];
     location?: EntityLocation[];
 }
+
+export type ViewableShelfItem = PropertiesOnly<RenderableShelfItem>;
 
 export class RenderableShelfSection {
     readonly width: number;
@@ -70,6 +79,17 @@ export class RenderableShelfSection {
         return this.getSpaceLeft() >= item.width;
     }
 
+    exportToViewable(): ViewableShelfSection {
+        return {
+            width: this.width,
+            height: this.height,
+            sortBookInverted: this.sortBookInverted,
+            bottom: this.bottom,
+            wall: this.wall,
+            items: this.items
+        }
+    }
+
     private getSpaceLeft(): number {
         let taken = 0;
         this.items.forEach((item) => {
@@ -80,6 +100,8 @@ export class RenderableShelfSection {
         return left;
     }
 }
+
+export type ViewableShelfSection = Omit<Mutable<PropertiesOnly<RenderableShelfSection>>, 'items'> & {items: ViewableShelfItem[]};
 
 export class RenderableShelfRow {
     height: number = 0;
@@ -115,6 +137,19 @@ export class RenderableShelfRow {
         return this.getSpaceLeft() >= section.width;
     }
 
+    exportToViewable(): ViewableShelfRow {
+        let res: ViewableShelfRow = {
+            height: this.height,
+            width: this.width,
+            sections: []
+        }
+
+        this.sections.forEach((section, i) => {
+            res.sections[i] = section.exportToViewable();
+        })
+        return res;
+    }
+
     private getSpaceLeft(): number {
         let taken: number = 0;
         this.sections.forEach((section) => {
@@ -129,6 +164,8 @@ export class RenderableShelfRow {
         return left;
     }
 }
+
+export type ViewableShelfRow = Omit<Mutable<PropertiesOnly<RenderableShelfRow>>, 'sections'> & {sections: ViewableShelfSection[]};
 
 export class RenderableShelf {
     readonly title?: string;
@@ -213,6 +250,27 @@ export class RenderableShelf {
         return this.getSpaceLeft() >= row.height;
     }
 
+    exportToViewable(): ViewableShelf {
+        let res: ViewableShelf = {
+            title: this.title,
+            subtitle: this.subtitle,
+            location: this.location,
+            innerWidth: this.innerWidth,
+            innerHeight: this.innerHeight,
+            topWidth: this.topWidth,
+            bottomWidth: this.bottomWidth,
+            rightWidth: this.rightWidth,
+            leftWidth: this.leftWidth,
+            backgroundColor: this.backgroundColor,
+            outerColor: this.outerColor,
+            model: []
+        };
+        this.model.forEach((row,i) => {
+            res.model[i] = row.exportToViewable();
+        })
+        return res;
+    }
+
     private getSpaceLeft(): number {
         let taken = 0;
         this.model.forEach((row) => {
@@ -224,3 +282,5 @@ export class RenderableShelf {
         return left;
     }
 }
+
+export type ViewableShelf = Omit<Mutable<PropertiesOnly<RenderableShelf>>, 'model'> & {model: ViewableShelfRow[]};

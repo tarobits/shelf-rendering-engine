@@ -11,20 +11,22 @@
 <script setup lang="ts">
 import { computed, ComputedRef, toRef } from 'vue';
 import { useSectionTheme } from '../composables/useShelfTheme';
-import { RenderableShelfSection } from '../types/engine';
+import { RenderableShelfSection, ViewableShelfSection } from '../types/engine';
 import ShelfObject from './ShelfObject.vue';
 
 const props = defineProps<{
-    section: RenderableShelfSection,
+    section: ViewableShelfSection,
     scale: { h: number; w: number }
 }>();
+
+const sectionRef = toRef(props, 'section');
 
 const scale = computed(() => ({
     h: props.scale.h,
     w: props.scale.w
 }))
 
-const sectionStyle = useSectionTheme(props.section, scale);
+const sectionStyle = useSectionTheme(sectionRef, scale);
 </script>
 
 <style scoped>

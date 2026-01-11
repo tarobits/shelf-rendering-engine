@@ -9,22 +9,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef, toRef } from 'vue';
-import { RenderableShelfItem } from '../types/engine';
+import { computed, ComputedRef, toRef, toRefs } from 'vue';
+import { RenderableShelfItem, ViewableShelfItem } from '../types/engine';
 import { useItemTheme } from '../composables/useShelfTheme';
 
 const props = defineProps<{
-    item: RenderableShelfItem,
+    item: ViewableShelfItem,
     scale: { h: number; w: number },
     invertedBooks: boolean
 }>();
+
+const itemRef = toRef(props, 'item');
+const invertedBooksRef = toRef(props, 'invertedBooks');
 
 const scale = computed(() => ({
     h: props.scale.h,
     w: props.scale.w
 }))
 
-const itemStyle = useItemTheme(props.item, scale, props.invertedBooks);
+const itemStyle = useItemTheme(itemRef, scale, invertedBooksRef);
 </script>
 
 <style scoped>

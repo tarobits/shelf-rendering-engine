@@ -1,12 +1,12 @@
 <template>
     <div class="shelf-container">
-        <div v-if="props.shelf.title || props.shelf.subtitle" class="shelf-title-container">
-            <p v-if="props.shelf.title" class="shelf-title">{{ props.shelf.title }}</p>
-            <p v-if="props.shelf.subtitle" class="shelf-subtitle">{{ props.shelf.subtitle }}</p>
+        <div v-if="shelfRef.title || shelfRef.subtitle" class="shelf-title-container">
+            <p v-if="shelfRef.title" class="shelf-title">{{ shelfRef.title }}</p>
+            <p v-if="shelfRef.subtitle" class="shelf-subtitle">{{ shelfRef.subtitle }}</p>
         </div>
         <div class="shelf" ref="el" :style="shelfStyle.outer">
             <div class="shelf-inner" :style="shelfStyle.inner">
-                <ShelfRow v-for="r,i in props.shelf.model" :key="i" :row="r" :scale="scale" />
+                <ShelfRow v-for="r,i in shelfRef.model" :key="i" :row="r" :scale="scale" />
             </div>
         </div>
     </div>
@@ -15,23 +15,25 @@
 <script setup lang="ts">
 import { getScale } from '../composables';
 import { useShelfTheme } from '../composables/useShelfTheme';
-import { RenderableShelf } from '../types/engine';
+import { ViewableShelf } from '../types/engine';
 import { onMounted, onUnmounted, ref, toRef } from 'vue';
 import ShelfRow from './ShelfRow.vue';
 
 const el = ref<HTMLElement | null>(null);
 
 const props = defineProps<{
-    shelf: RenderableShelf
+    shelf: ViewableShelf
 }>();
+
+const shelfRef = toRef(props, 'shelf');
 
 let observer: ResizeObserver;
 
 const size = ref({h: 0, w: 0})
 
-const scale = getScale(props.shelf, size);
+const scale = getScale(shelfRef, size);
 
-const shelfStyle = useShelfTheme(props.shelf, scale);
+const shelfStyle = useShelfTheme(shelfRef, scale);
 
 onMounted(() => {
     console.log(props.shelf);
