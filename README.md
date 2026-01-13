@@ -65,7 +65,8 @@ const shelf = RenderableShelf.getShelfFromProps({
 ## Data Types
 
 > [!NOTE]
-> All widths and heights are relational. You may use centimeters, inches, or any other form of measurement. They will all be converted into pixels on rendering.
+> All widths and heights are relational. You may use centimeters, inches, or any other form of measurement.
+> They will all be converted into pixels on rendering.
 
 ### Main Types
 
@@ -96,7 +97,7 @@ const shelf = RenderableShelf.getShelfFromProps({
 
 > [!NOTE]
 > For shelf sections you can also use percentages for the height and width related to the shelf.
-
+<!-- -->
 > [!WARNING]
 > bottom.width and wall.width will count towards the absolute size.
 
