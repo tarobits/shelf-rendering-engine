@@ -1,15 +1,15 @@
 {
   "name": "@tarobits/shelf-rendering-engine",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An engine for rending shelves with Vue.js",
   "license": "MPL-2.0",
-  "author": {"name": "Tarobits"},
+  "author": {
+    "name": "Tarobits"
+  },
   "type": "module",
-
   "main": "./dist/shelf-rendering-engine.umd.cjs",
   "module": "./dist/shelf-rendering-engine.js",
   "types": "./dist/types/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -18,13 +18,12 @@
     },
     "./style.css": "./dist/index.css"
   },
-
   "sideEffects": [
     "*.css"
   ],
-
-  "files": ["dist"],
-
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
