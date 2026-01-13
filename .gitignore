@@ -13,6 +13,7 @@ dist-ssr
 *.local
 src/**/*.d.ts
 src/**/*.d.ts.map
+**/*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*
