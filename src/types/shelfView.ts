@@ -17,7 +17,7 @@ type ColorShelfView = {
 export type FrontShelfView = ImageShelfView | ColorShelfView;
 
 type BaseSideView = {
-    sideView: {
+    sideView?: {
         style?: {
             background?: DisplayStyle,
             title?: DisplayStyle,
@@ -30,11 +30,11 @@ type BaseSideView = {
                 key?: DisplayStyle, 
                 value?: DisplayStyle
             },
-            identification_code?: Record<string, {
-                key?: DisplayStyle,
+            identificationCode?: Record<string, {
+                name?: DisplayStyle,
                 value?: DisplayStyle
             }> | {
-                key?: DisplayStyle,
+                name?: DisplayStyle,
                 value?: DisplayStyle
             }
         },
@@ -43,7 +43,7 @@ type BaseSideView = {
             subtitle?: boolean,
             description?: boolean,
             location?: boolean,
-            identification_code?: boolean | Array<string> | Array<number>
+            identificationCode?: boolean | Array<string>
         }
     }
 }

@@ -20,7 +20,7 @@ export type RenderableShelfItem = {
     description?: string;
     sideView?: SideShelfView;
     count?: number;
-    identification_code?: IdentificationCode[];
+    identificationCode?: IdentificationCode[];
     location?: EntityLocation[];
 }
 

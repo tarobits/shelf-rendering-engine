@@ -10,18 +10,18 @@ type BaseShelfItem = {
     subtitle?: string,
     description?: string,
     positionInRow?: number,
-    identification_code?: IdentificationCode[],
+    identificationCode?: IdentificationCode[],
     location?: EntityLocation[],
-    availibility: 'unlimited' | 'limited',
+    availability: 'unlimited' | 'limited',
 }
 
 export type LimitedShelfItem = BaseShelfItem & {
-    availibility: 'limited',
+    availability: 'limited',
     count: number
 }
 
 export type UnlimitedShelfItem = BaseShelfItem & {
-    availibility: 'unlimited'
+    availability: 'unlimited'
 }
 
 export type ExpandableShelfItem = (UnlimitedShelfItem | LimitedShelfItem) & {

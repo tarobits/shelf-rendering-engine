@@ -30,7 +30,7 @@ export function validateShelfItem(shelf: ShelfType, section: ShelfSection, item:
             (typeof section.width === "string" && computeShelfPercentageSizing(shelf, "width", section.width) < item.width)
         ) throw new Error(`Width of item ${item.title} cannot be bigger than section width.`);
     }
-    if (item.availibility === "limited" && item.count < 0) throw new Error(`The count of item ${item.title} must be 0 or higher.`);
+    if (item.availability === "limited" && item.count < 0) throw new Error(`The count of item ${item.title} must be 0 or higher.`);
     if (item.frontView.type === "image" && !validateURL(item.frontView.url)) throw new Error(`The frontView image of item ${item.title} is not a valid image url.`);
     if (item.frontView.type === "color" && !validateColor(item.frontView.color)) throw new Error(`The frontView color of item ${item.title} is not a valid color.`);
     if (item.expandable) {

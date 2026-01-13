@@ -111,9 +111,9 @@ function computeItem(item: ShelfItem): RenderableShelfItem {
         title: item.title,
         subtitle: item.subtitle,
         description: item.description,
-        identification_code: item.identification_code,
+        identificationCode: item.identificationCode,
         location: item.location,
-        count: item.availibility === "limited" ? item.count : undefined,
+        count: item.availability === "limited" ? item.count : undefined,
         depth: item.expandable === true ? item.depth : undefined,
         sideView: item.expandable === true ? item.sideView : undefined
     }
