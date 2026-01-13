@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   build: {
+    cssCodeSplit: true,
     lib: {
       entry: 'src/index.ts',
       name: 'ShelfRenderingEngine',
