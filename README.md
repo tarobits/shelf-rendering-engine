@@ -1,7 +1,7 @@
 # Shelf Rendering Engine
 
 ![License](https://img.shields.io/badge/license-MPL--2.0-blue)
-![Version](https://img.shields.io/badge/version-v0.1.5-orange)
+![Version](https://img.shields.io/badge/version-v0.2.0-orange)
 
 A highly flexible rendering engine for virtual shelves, inventories, and catalog-like UIs, designed for Vue.js and powered by strict TypeScript models.
 
