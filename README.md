@@ -92,14 +92,15 @@ const shelf = RenderableShelf.getShelfFromProps({
 ```
 
 </details>
-<details>
-<summary>ShelfSection</summary>
 
 > [!NOTE]
 > For shelf sections you can also use percentages for the height and width related to the shelf.
 
 > [!WARNING]
-> bottom.width and wall.width will count towards the absolute size.
+> For shelf sections bottom.width and wall.width will count towards the absolute size of the shelf section.
+
+<details>
+<summary>ShelfSection</summary>
 
 ```ts
 {
