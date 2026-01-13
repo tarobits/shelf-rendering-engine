@@ -1,1 +1,0 @@
-{"root":["./src/app.vue","./src/index.ts","./src/components/helloworld.vue","./src/components/shelf.vue","./src/components/shelfobject.vue","./src/components/index.ts","./src/composables/index.ts","./src/composables/useshelflayout.ts","./src/types/index.ts","./src/types/shelf.ts"],"errors":true,"version":"5.9.3"}
